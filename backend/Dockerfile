@@ -14,10 +14,11 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 # Copy package.json
 COPY package.json package.json
-# Istall npm & cache clean
+# Istall npm
 RUN npm install
+RUN npm install -g nodemon
 # Copy everything from current dir to Image dir 
 COPY . .
 # Start container with command tini --node ./src/index.js
-CMD ["tini","--","node","./src/index.js"]
+CMD ["tini","--","nodemon","./src/index.js"]
 
