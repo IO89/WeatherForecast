@@ -20,26 +20,34 @@ class Weather extends React.Component {
 
     this.state = {
       icon: '',
+      weather: null,
     };
   }
 
   async componentWillMount() {
     const weather = await getWeatherFromApi();
-    this.setState({ icon: weather.icon.slice(0, -1) });
+    this.setState({ weather });
+  }
+
+  renderContent() {
+    return this.state.weather && this.state.weather.map((object, index) => {
+      const icon = object.weather[0].icon.slice(0, -1);
+
+      return (
+        <div className="icon" key={index}>
+          {icon && <img src={`/img/${icon}.svg`} alt={'weatherPicture'} />}
+        </div>
+      );
+    });
   }
 
   render() {
-    const { icon } = this.state;
-
     return (
-      <div className="icon">
-        { icon && <img src={`/img/${icon}.svg`} alt={'weatherPicture'} /> }
+      <div>
+        { this.renderContent() }
       </div>
     );
   }
 }
 
-ReactDOM.render(
-  <Weather />,
-  document.getElementById('app')
-);
+ReactDOM.render(<Weather />, document.getElementById('app'));

@@ -13,7 +13,7 @@ services:
   weatherapp_front:
       build: ./frontend
       ports:
-        - "80:8000"
+        - "8000:8000"
       volumes:
        - frontend:/app/frontend
 

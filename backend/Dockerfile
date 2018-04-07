@@ -10,7 +10,6 @@ RUN mkdir -p /usr/src/app
 # Change work dir
 WORKDIR  /usr/src/app
 # Copy package.json
-VOLUME [ "backend:/usr/s" ]
 COPY package.json package.json
 # Istall npm and isntall nodemon
 RUN npm install
