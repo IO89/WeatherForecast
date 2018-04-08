@@ -3,6 +3,23 @@ import ReactDOM from 'react-dom';
 
 const baseURL = process.env.ENDPOINT;
 
+const getLocation = () => {
+  if (!navigator.geolocation) {
+    console.log('Geolocation is not supported in this browser');
+    return;
+  }
+  function success(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    console.log(lat, lon);
+  }
+  function error() {
+    console.log('unable to get location');
+  }
+  navigator.geolocation.getCurrentPosition(success, error);
+};
+getLocation();
+
 const getWeatherFromApi = async () => {
   try {
     const response = await fetch(`${baseURL}/weather`);
@@ -13,6 +30,7 @@ const getWeatherFromApi = async () => {
 
   return {};
 };
+
 
 class Weather extends React.Component {
   constructor(props) {
@@ -44,6 +62,7 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
+        <h2>Forecast for today and next 3 and 6 hours</h2>
         { this.renderContent() }
       </div>
     );
