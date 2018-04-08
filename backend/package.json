@@ -10,12 +10,15 @@
     "lint": "eslint src/*.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "debug": "^2.6.3",
     "geolocation": "^0.2.0",
     "kcors": "^2.2.1",
     "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
     "koa-json": "^2.0.2",
     "koa-router": "^7.2.0",
+    "koa-router-form-parser": "^0.1.2",
     "node-fetch": "^1.6.3"
   },
   "devDependencies": {
