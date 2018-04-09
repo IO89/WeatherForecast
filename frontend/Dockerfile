@@ -1,5 +1,7 @@
 # Using node version 9 with alpine
 FROM node:9-alpine
+# Install tini
+RUN apk add --update tini
 # App  listens port 8000
 EXPOSE 8000
 # Create dir for app
@@ -13,4 +15,4 @@ COPY . .
 # npm install
 RUN npm install
 # Start container with command tini --npm ./src/index.jsx
-CMD ["npm","start"]
+CMD ["tini","--","npm","start"]

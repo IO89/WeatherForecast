@@ -3,42 +3,44 @@ import ReactDOM from 'react-dom';
 
 const baseURL = process.env.ENDPOINT;
 
+// Get location and send get request with lat&lon parameters, suppose to receive JSON
+
 const getLocation = () => {
   if (!navigator.geolocation) {
-    console.warn('Geolocation is not supported in this browser');
+    console.log('Geolocation is not supported in this browser');
     return;
   }
-  function success(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    console.log(lat, lon);
-
-    fetch('http://0.0.0.0:9000/api/weather', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({ lat, lon }),
-    });
+  async function success(position) {
+    const { latitude, longitude } = position.coords;
+    const request = await fetch(
+      `${baseURL}/forecast/${latitude}&${longitude}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        method: 'GET',
+      }
+    );
+    const weather = await request.json();
+    return weather;
   }
   function error() {
     console.log('Unable to get location');
   }
   navigator.geolocation.getCurrentPosition(success, error);
 };
-getLocation();
 
-const getWeatherFromApi = async () => {
+/*  const getWeatherFromApi = async () => {
   try {
-    const response = await fetch(`${baseURL}/weather`);
+    const response = await fetch(`${baseURL}/forecast`);
     return response.json();
   } catch (error) {
     console.error(error);
   }
 
-  return {};
-};
+   return {};
+ }; */
 
 class Weather extends React.Component {
   constructor(props) {
@@ -51,9 +53,12 @@ class Weather extends React.Component {
   }
 
   async componentWillMount() {
-    const weather = await getWeatherFromApi();
-    this.setState({ weather });
+    await getLocation();
+    
   }
+  componentDidMount(){
+    this.setState({ weather });
+   }
 
   renderContent() {
     return (
@@ -73,7 +78,7 @@ class Weather extends React.Component {
   render() {
     return (
       <div>
-        <h2>Forecast for today and next 3 and 6 hours</h2>
+        <h2>Forecast for today and next 3 and 6</h2>
         {this.renderContent()}
       </div>
     );
