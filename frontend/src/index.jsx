@@ -8,7 +8,6 @@ const getWeather = async () => {
   const getLocation = () => new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
-
   const position = await getLocation();
   const { latitude, longitude } = position.coords;
   const request = await fetch(
@@ -25,7 +24,6 @@ const getWeather = async () => {
   return weather;
 };
 
-
 class Weather extends React.Component {
   constructor(props) {
     super(props);
@@ -35,6 +33,7 @@ class Weather extends React.Component {
       weather: null,
     };
   }
+
 // Wait until weather data is loaded and then set state of weather
   async componentWillMount() {
     const weather = await getWeather();
