@@ -6,5 +6,3 @@
  # Run container with volume
 sudo docker run --rm -p 8000:8000 -v $(pwd):/src/frontend --name weatherapp_front -t weatherapp_front
 
-### To launch mocha tests run following command in terminal:
-    npm test

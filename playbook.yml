@@ -1,1 +1,25 @@
 ---
+- name: install docker,docker-compose and git clone the App
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+  - name: install docker
+    apt: 
+      name: docker
+      state: present
+
+  - name: install docker-compose
+    get_url: 
+      url: https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+      dest: /usr/local/bin/docker-compose
+      mode: 'u+x,g+x'
+
+  - name: clone git repo
+    git: 
+      repo: https://github.com/IO89/WeatherForecast
+      dest: /usr/local/bin/WeatherForecast
+
+  - name: launch ap by docker-compose up
+    command: chdir=/usr/local/bin/WeatherForecast docker-compose up -d

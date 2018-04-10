@@ -6,5 +6,6 @@ sudo docker run --rm -i -p 9000:9000 --name weatherapp_backend -t weatherapp_bac
 # Run container with volume
 sudo docker run --rm -p 9000:9000 -v $(pwd):/src/backend --name weatherapp_backend -t weatherapp_backend
 
-### To launch mocha tests run following command in terminal:
+### Test supposed return status ok and response to be a JSON object
+# To launch mocha tests run following command in terminal:
 nodemon --exec 'npm test'
