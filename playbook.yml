@@ -21,5 +21,6 @@
       repo: https://github.com/IO89/WeatherForecast
       dest: /usr/local/bin/WeatherForecast
 
+
   - name: launch ap by docker-compose up
-    command: chdir=/usr/local/bin/WeatherForecast docker-compose up -d --no-recreate
+    command: chdir=/usr/local/bin/WeatherForecast docker-compose up
