@@ -4,16 +4,12 @@ import ReactDOM from 'react-dom';
 const baseURL = process.env.ENDPOINT;
 
 // Get location and send get request with lat&lon parameters, suppose to receive JSON
-
 const getWeather = async () => {
   const getLocation = () => new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 
   const position = await getLocation();
-  console.log('position');
-  console.log(position);
-
   const { latitude, longitude } = position.coords;
   const request = await fetch(
       `${baseURL}/forecast/${latitude}&${longitude}`,
@@ -26,51 +22,9 @@ const getWeather = async () => {
     }
     );
   const weather = await request.json();
-  console.log('success');
-  console.log(weather);
   return weather;
-
-
-  // if (!navigator.geolocation) {
-  //   console.log('Geolocation is not supported in this browser');
-  //   return;
-  // }
-  // const success = async (position) => {
-  //   const { latitude, longitude } = position.coords;
-  //   const request = await fetch(
-  //     `${baseURL}/forecast/${latitude}&${longitude}`,
-  //     {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       method: 'GET',
-  //     }
-  //   );
-  //   const weather = await request.json();
-  //   console.log('success')
-  //   console.log(weather)
-  //   return weather;
-  // }
-  // function error() {
-  //   console.log('Unable to get location');
-  // }
-  // const weather = await navigator.geolocation.getCurrentPosition(success, error);
-  // console.log('inside')
-  // console.log(weather)
-  // return weather
 };
 
-/*  const getWeatherFromApi = async () => {
-  try {
-    const response = await fetch(`${baseURL}/forecast`);
-    return response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-   return {};
- }; */
 
 class Weather extends React.Component {
   constructor(props) {
@@ -81,13 +35,12 @@ class Weather extends React.Component {
       weather: null,
     };
   }
-
+// Wait until weather data is loaded and then set state of weather
   async componentWillMount() {
     const weather = await getWeather();
-    console.log('from request');
-    console.log(weather);
     this.setState({ weather });
   }
+  // if weather is loaded then render icon
   renderContent() {
     return (
       this.state.weather &&
@@ -102,10 +55,8 @@ class Weather extends React.Component {
       })
     );
   }
-
+  // Display weather
   render() {
-    console.log('state is');
-    console.log(this.state);
     return (
       <div>
         <h2>Forecast for today and next 3 and 6</h2>
