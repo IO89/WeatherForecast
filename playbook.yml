@@ -22,4 +22,4 @@
       dest: /usr/local/bin/WeatherForecast
 
   - name: launch ap by docker-compose up
-    command: chdir=/usr/local/bin/WeatherForecast docker-compose up -d
+    command: chdir=/usr/local/bin/WeatherForecast docker-compose up -d --no-recreate
