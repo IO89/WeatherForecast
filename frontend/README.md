@@ -5,4 +5,4 @@
  sudo docker run --rm -i -p 8000:8000 --name weatherapp_front -t weatherapp_front
  # Run container with volume
 sudo docker run --rm -p 8000:8000 -v $(pwd):/src/frontend --name weatherapp_front -t weatherapp_front
-
+# For more information check README.md in backend & frontend folders 
