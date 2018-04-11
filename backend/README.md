@@ -9,3 +9,5 @@ sudo docker run --rm -p 9000:9000 -v $(pwd):/src/backend --name weatherapp_backe
 ### Test supposed return status ok and response to be a JSON object
 # To launch mocha tests run following command in terminal:
 nodemon --exec 'npm test'
+
+# Server side receive lat and lon from a browser and then make send response JSON file to frontend.

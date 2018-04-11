@@ -7,7 +7,7 @@ const cors = require('kcors');
 const API_KEY = '91931bbedeaee3ede7a5eb46cbd6fe21';
 const appId = process.env.APPID || API_KEY;
 const mapURI = process.env.MAP_ENDPOINT || 'http://api.openweathermap.org/data/2.5';
-const targetCity = process.env.TARGET_CITY || 'Helsinki,fi';
+// const targetCity = process.env.TARGET_CITY || 'Helsinki,fi';
 const port = process.env.PORT || 9000;
 
 const app = new Koa();

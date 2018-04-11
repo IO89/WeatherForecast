@@ -5,4 +5,4 @@
  sudo docker run --rm -i -p 8000:8000 --name weatherapp_front -t weatherapp_front
  # Run container with volume
 sudo docker run --rm -p 8000:8000 -v $(pwd):/src/frontend --name weatherapp_front -t weatherapp_front
-# For more information check README.md in backend & frontend folders 
+# Client side receive lat and lon from a browser and then make a GET request to backend with parmaters, afterwards suppose to receive weather data for user location. Weather data is weather today and next 3 and 6 hours.
