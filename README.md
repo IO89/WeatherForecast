@@ -13,9 +13,8 @@ docker-compose down
 ansible-playbook --ask-sudo-pass playbook.yml
 
 # To access backend on aws run in your terminal
-http GET ec2-18-219-11-223.us-east-2.compute.amazonaws.com:9000 
-# To access frontend on aws run in your terminal
-http GEt ec2-18-188-113-203.us-east-2.compute.amazonaws.com:8000
+http://ec2-18-222-99-127.us-east-2.compute.amazonaws.com:9000/
+
 # To launch test run in backend folder(Suppose to receive status ok and JSON file)
 npm test index.test.js
 

@@ -1,0 +1,94 @@
+{
+    "executionRoleArn": null,
+    "containerDefinitions": [
+      {
+        "dnsSearchDomains": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [
+          {
+            "hostPort": 9000,
+            "protocol": "tcp",
+            "containerPort": 9000
+          }
+        ],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 256,
+        "environment": [],
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "dockerSecurityOptions": null,
+        "memory": 250,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "image": "io89/weatherapp_backend",
+        "disableNetworking": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": null,
+        "hostname": null,
+        "extraHosts": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "privileged": null,
+        "name": "backend"
+      },
+      {
+        "dnsSearchDomains": null,
+        "logConfiguration": null,
+        "entryPoint": null,
+        "portMappings": [
+          {
+            "hostPort": 8000,
+            "protocol": "tcp",
+            "containerPort": 8000
+          }
+        ],
+        "command": null,
+        "linuxParameters": null,
+        "cpu": 256,
+        "environment": [],
+        "ulimits": null,
+        "dnsServers": null,
+        "mountPoints": [],
+        "workingDirectory": null,
+        "dockerSecurityOptions": null,
+        "memory": 250,
+        "memoryReservation": null,
+        "volumesFrom": [],
+        "image": "io89/weatherapp_front",
+        "disableNetworking": null,
+        "healthCheck": null,
+        "essential": true,
+        "links": [
+          "backend:backend"
+        ],
+        "hostname": null,
+        "extraHosts": null,
+        "user": null,
+        "readonlyRootFilesystem": null,
+        "dockerLabels": null,
+        "privileged": null,
+        "name": "front"
+      }
+    ],
+    "placementConstraints": [],
+    "memory": null,
+    "taskRoleArn": null,
+    "compatibilities": [
+      "EC2"
+    ],
+    "taskDefinitionArn": "arn:aws:ecs:us-east-2:424179015669:task-definition/weather-forecast-back:1",
+    "family": "weather-forecast-back",
+    "requiresAttributes": [],
+    "requiresCompatibilities": null,
+    "networkMode": null,
+    "cpu": null,
+    "revision": 1,
+    "status": "ACTIVE",
+    "volumes": []
+  }
